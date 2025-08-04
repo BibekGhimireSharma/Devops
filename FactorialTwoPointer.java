@@ -15,7 +15,7 @@ public class FactorialTwoPointer {
             if (left == right) {
                 result *= left; // Multiply only once when pointers meet
             } else {
-                result *= left * right; // Multiply both pointers
+                result *= left * right; // Multiply both Pointers
             }
             left++;
             right--;
