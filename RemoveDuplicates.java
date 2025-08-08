@@ -3,6 +3,7 @@ public class RemoveDuplicates {
         int i = 0;
 
         for (int j = 1; j < nums.length; j++) {
+            //checks the condition whether it is equal or not
             if (nums[i] != nums[j]) {
                 i++;
                 nums[i] = nums[j];
