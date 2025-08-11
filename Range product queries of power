@@ -1,0 +1,49 @@
+class Solution {
+    private static final int MOD = 1_000_000_007;
+
+    public int[] productQueries(int n, int[][] queries) {
+       
+        int count = Integer.bitCount(n);
+        int[] exponents = new int[count];
+        int index = 0;
+        for (int i = 0; i < 31; i++) {
+            if (((n >> i) & 1) == 1) {
+                exponents[index++] = i;  
+            }
+        }
+
+        
+        long[] prefixExp = new long[count];
+        prefixExp[0] = exponents[0];
+        for (int i = 1; i < count; i++) {
+            prefixExp[i] = prefixExp[i - 1] + exponents[i];
+        }
+
+        
+        int[] results = new int[queries.length];
+        for (int i = 0; i < queries.length; i++) {
+            int left = queries[i][0];
+            int right = queries[i][1];
+
+            long sumExp = prefixExp[right] - (left > 0 ? prefixExp[left - 1] : 0);
+            results[i] = modPow(2, sumExp, MOD);
+        }
+
+        return results;
+    }
+
+   
+    private int modPow(long base, long exp, int mod) {
+        long result = 1;
+        base %= mod;
+
+        while (exp > 0) {
+            if ((exp & 1) == 1) {
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;
+            exp >>= 1;
+        }
+        return (int) result;
+    }
+}
