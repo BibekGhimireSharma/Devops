@@ -11,7 +11,7 @@ public class MoveZeroes {
             }
         }
     }
-
+//
     public static void main(String[] args) {
         MoveZeroes obj = new MoveZeroes();
         int[] nums = { 0, 1, 0, 3, 12 };
